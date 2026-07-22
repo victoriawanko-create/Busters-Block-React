@@ -17,7 +17,7 @@ function Nav() {
             </Link>
           </li>
           <li className="nav__link">
-            <Link to="/movies" className="nav__link">
+            <Link to="/movies" className="nav__link--primary">
               Movies
             </Link>
           </li>

@@ -1,35 +1,81 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import "./Movies.css";
+import Nav from '../components/Nav';
 
 function Movies() {
-  return (
-    <>
-      <div className="movies__header">
-          <h2 className="section__title movies__header--title">
-            All <span class="blue">Movies</span>
-          </h2>
+    const movieTitle = "Inception";
+    const apiKey = "95e3e9cb";
+    const [movieData, setMovieData] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
-          <div className="search-container">
-                <input type="text" id="search" placeholder="Search for a movie..." />
-                <button id="search-btn" onclick="searchMovies()">
-                  <i className="fas fa-search"></i>
-                </button>
-              </div>
+    useEffect(() => {
+        const fetchMovieData = async () => {
+            try {
+                const response = await fetch(`http://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setMovieData(data); 
+            } catch (error) {
+                console.error("Error fetching the movie data:", error);
+            }
+        };
 
-          
-          <select id="filter" onchange="filterMovies(event)">
-            <option value="" disabled selected>Sort</option>
-            <option value="A_TO_Z">Alphabetical A to Z</option>
-            <option value="Z_TO_A">Alphabetical Z to A</option>
-            <option value="NEW_TO_OLD">Newest to oldest</option>  
-            <option value="OLD_TO_NEW">Oldest to newest</option>  
-          </select>
-          </div>
+        fetchMovieData(); 
+    }, [movieTitle, apiKey]); 
 
-        <div id="movie-list" class="movies">
-          <i class="fas fa-spinner movies__loading--spinner"></i>
+    const searchMovies = async () => {
+        if (!searchTerm) return; 
+        try {
+            const response = await fetch(`http://www.omdbapi.com/?t=${searchTerm}&apikey=${apiKey}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setMovieData(data);
+        } catch (error) {
+            console.error("Error fetching the movie data:", error);
+        }
+    };
+
+    return (
+        <div>
+            <Nav />
+            <div className="movies__header">
+                <h2 className="section__title movies__header--title">
+                    All <span className="blue">Movies</span>
+                </h2>
+
+                <div className="search-container">
+                    <input 
+                        type="text" 
+                        id="search" 
+                        placeholder="Search for a movie..." 
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)} 
+                    />
+                    <button id="search-btn" onClick={searchMovies}>
+                        <i className="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div className="movie-list">
+                    {movieData ? (
+                        <div>
+                            <h1>{movieData.Title}</h1>
+                            <p>{movieData.Plot}</p>
+                            <img src={movieData.Poster} alt={`${movieData.Title} poster`} />
+                        </div>
+                    ) : (
+                        <p>No movies found. Try another search.</p>
+                    )}
+                </div>
+            </div>
         </div>
-    </>
-  )
+    );
 }
 
-export default Movies
+export default Movies;
+
+

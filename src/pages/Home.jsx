@@ -3,6 +3,7 @@ import "./Home.css";
 import logo from '../assets/logo.png';
 import Nav from '../components/Nav';
 import Movies from '../pages/Movies';
+import homeImg from '../assets/home-cinema.svg';
 
 function Home() {
   return (
@@ -17,10 +18,16 @@ function Home() {
              <a href="#features">
                <button onClick={<Movies />} className="btn">Browse Movies</button>
             </a>
+            <figure class="header__img--wrapper">
+          <img src={homeImg} class="header__img" />
+            </figure>
           </div>
+            
       </section>
 
       <section className="highlights-section">
+         <div class="container">
+        <div class="row">
       <h2 className="section__title">
         Why <span className="blue">Buster's Block?</span>
       </h2>
@@ -52,6 +59,8 @@ function Home() {
             Gain universal access to the most popular movies from the 1920s to the 2020s for only $10 a month.
           </p>
         </div>
+      </div>
+      </div>
       </div>
       </section>
 
