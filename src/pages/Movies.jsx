@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./Movies.css";
 import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 
 function Movies() {
     const movieTitle = "Inception";
@@ -39,10 +40,14 @@ function Movies() {
         }
     };
 
+    
+
     return (
         <div>
             <Nav />
+
             <div className="movies__header">
+                <div classname="movies__controls">
                 <h2 className="section__title movies__header--title">
                     All <span className="blue">Movies</span>
                 </h2>
@@ -59,31 +64,32 @@ function Movies() {
                         <i className="fas fa-search"></i>
                     </button>
                 </div>
+                </div>
 
-                <div className="movie-list">
-                    <div className="movie-card">
-                    {movieData?.Search?.length > 0 ? (
-                        movieData.Search.map((movie) => (
-                        <div
-                            key={movie.imdbID}>
-                            <h3>{movie.Title}</h3>
-                            {movie.Poster !== "N/A" ? (
-                            <img src={movie.Poster} alt={`${movie.Title} poster`} />
-                           
-                        ) : (
-                        <p>No poster available</p>
-                        )}
-                        </div>
-                        ))
-                    ) : (
-                        <p>No movies found. Try another search.</p>
-                    )}
-                    </div>
-                     </div>
+               <div className="movie-list">
+                {movieData?.Search?.length > 0 ? (
+                 movieData.Search.map((movie) => (
+                <div className="movie-card" key={movie.imdbID}>
+                  <h3>{movie.Title}</h3>
+                 {movie.Poster !== "N/A" ? (
+                <img src={movie.Poster} alt={`${movie.Title} poster`} />
+        ) : (
+          <p>No poster available</p>
+        )}
+      </div>
+    ))
+  ) : (
+    <p>No movies found. Try another search.</p>
+  )}
+
+</div>
+       <Footer />             
             </div>
         </div>
+      
     );
 }
+
 
 export default Movies;
 
