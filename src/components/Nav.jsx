@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import "./Nav.css";
 
 
-
 function Nav() {
   return (
     <>
@@ -19,6 +18,11 @@ function Nav() {
           <li className="nav__link">
             <Link to="/movies" className="nav__link--primary">
               Movies
+            </Link>
+            </li>
+          <li className="nav__cart">
+            <Link to="/cart" className="nav__cart">
+              <i className="fas fa-shopping-cart"></i>
             </Link>
           </li>
           </ul>

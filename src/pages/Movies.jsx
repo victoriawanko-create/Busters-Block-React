@@ -11,7 +11,7 @@ function Movies() {
     useEffect(() => {
         const fetchMovieData = async () => {
             try {
-                const response = await fetch(`http://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`);
+                const response = await fetch(`http://www.omdbapi.com/?s=${movieTitle}&apikey=${apiKey}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -28,7 +28,7 @@ function Movies() {
     const searchMovies = async () => {
         if (!searchTerm) return; 
         try {
-            const response = await fetch(`http://www.omdbapi.com/?t=${searchTerm}&apikey=${apiKey}`);
+            const response = await fetch(`http://www.omdbapi.com/?s=${searchTerm}&apikey=${apiKey}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -61,16 +61,25 @@ function Movies() {
                 </div>
 
                 <div className="movie-list">
-                    {movieData ? (
-                        <div>
-                            <h1>{movieData.Title}</h1>
-                            <p>{movieData.Plot}</p>
-                            <img src={movieData.Poster} alt={`${movieData.Title} poster`} />
+                    <div className="movie-card">
+                    {movieData?.Search?.length > 0 ? (
+                        movieData.Search.map((movie) => (
+                        <div
+                            key={movie.imdbID}>
+                            <h3>{movie.Title}</h3>
+                            {movie.Poster !== "N/A" ? (
+                            <img src={movie.Poster} alt={`${movie.Title} poster`} />
+                           
+                        ) : (
+                        <p>No poster available</p>
+                        )}
                         </div>
+                        ))
                     ) : (
                         <p>No movies found. Try another search.</p>
                     )}
-                </div>
+                    </div>
+                     </div>
             </div>
         </div>
     );

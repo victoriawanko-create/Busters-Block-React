@@ -34,3 +34,31 @@ select {
   width: 40px;
   height: 40px;
 }
+
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 24px;
+}
+.movie-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.movieTitle {
+    max-height: 380px;
+    transition: all 300ms ease;
+    cursor: not-allowed;
+    object-fit: contain;
+    object-position: left;
+}
+.movie__poster:hover {
+    transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .movie-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

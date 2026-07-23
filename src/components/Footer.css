@@ -1,0 +1,32 @@
+.footer {
+  background-color: #242424;
+}
+
+.logo {
+    align-items: center;
+    width: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.footer__logo--img {
+  width: 160px;
+  filter: grayscale(1) invert(1);
+}
+
+.footer__link,
+.footer__copyright {
+  color: #FFB900;
+}
+
+.footer__list {
+  margin: 20px 0 24px 0;
+  text-align: center;
+}
+
+.footer__link {
+  padding: 0 8px;
+}
+.footer__copyright {
+    text-align: center;
+}

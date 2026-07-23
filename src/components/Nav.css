@@ -26,6 +26,15 @@
     font-weight: bold;
     padding: 8px;
 }
+.nav__cart {
+    margin-left: 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #0E3FA9;
+    font-weight: bold;
+    padding: 8px;
+}
+
 .nav__link:hover {
     text-decoration: underline;
 }
