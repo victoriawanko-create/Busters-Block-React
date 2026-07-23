@@ -40,7 +40,32 @@ function Movies() {
         }
     };
 
-    
+    function filterMovies(event) {
+        const filter = event.target.value;
+        let sortedMovies = [...(movieData?.Search || [])];
+
+  if (filter === "A_TO_Z") {
+    sortedMovies.sort((a, b) => a.Title.localeCompare(b.Title));
+  }
+
+  if (filter === "Z_TO_A") {
+    sortedMovies.sort((a, b) => b.Title.localeCompare(a.Title));
+  }
+
+  if (filter === "NEW_TO_OLD") {
+    sortedMovies.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
+  }
+
+  if (filter === "OLD_TO_NEW") {
+    sortedMovies.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
+  }
+  setMovieData((previousData) => ({
+  ...previousData,
+  Search: sortedMovies,
+}));
+}
+
+
 
     return (
         <div>
@@ -52,7 +77,8 @@ function Movies() {
                     All <span className="blue">Movies</span>
                 </h2>
 
-                <div className="search-container">
+                <div className="search-and-sort">
+                 <div className="search-container">
                     <input 
                         type="text" 
                         id="search" 
@@ -64,7 +90,17 @@ function Movies() {
                         <i className="fas fa-search"></i>
                     </button>
                 </div>
+                <select id="filter" onchange="filterMovies(event)">
+                    <option value="" disabled selected>Sort</option>
+                    <option value="A_TO_Z">Alphabetical A to Z</option>
+                    <option value="Z_TO_A">Alphabetical Z to A</option>
+                    <option value="NEW_TO_OLD">Newest to oldest</option>  
+                    <option value="OLD_TO_NEW">Oldest to newest</option>  
+                </select>
                 </div>
+
+                </div>
+                
 
                <div className="movie-list">
                 {movieData?.Search?.length > 0 ? (

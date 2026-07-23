@@ -48,6 +48,9 @@ display: flex;
   display: block;
   width: 100%;
 }
+.search-and-sort {
+    align-items: center;
+}
 .movie-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
