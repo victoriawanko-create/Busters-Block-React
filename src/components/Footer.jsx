@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Footer.css";
-import logo from "../assets/logo.png"
+import footerLogo from "../assets/logo.png"
 
 function Footer() {
   return (
@@ -9,8 +9,8 @@ function Footer() {
       <div class="container">
       <div class="row row__column">
         <a href="#">
-          <figure class="logo">
-            <img src={logo} alt="" />
+          <figure>
+            <img src={footerLogo} alt="" />
           </figure>
         </a>
         <div class="footer__list">
