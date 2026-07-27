@@ -1,17 +1,23 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import React, { useState } from 'react'
 import Home from './pages/Home';
 import Nav from './components/Nav';
 import Movies from './pages/Movies';
+import MovieInfo from './pages/MovieInfo';
 import Footer from './components/Footer';
 
 function App() {
+
+  const [movies, setMovies] = useState({});
+
   return (
       <BrowserRouter>
         <div className="App">
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="id:" element={<Nav />}></Route>
-            <Route path="/movies" element={<Movies />}></Route>
+            <Route path="/movies" element={<Movies movies={movies} />}></Route>
+            <Route path="/movies/1" render={() => <MovieInfo movies={movies} />}></Route>
             <Route path="/footer" element={<Footer />}></Route>
           </Routes>
         </div>

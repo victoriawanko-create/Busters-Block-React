@@ -20,11 +20,6 @@ function Nav() {
               Movies
             </Link>
             </li>
-          <li className="nav__cart">
-            <Link to="/cart" className="nav__cart">
-              <i className="fas fa-shopping-cart"></i>
-            </Link>
-          </li>
           </ul>
         </div>
     </>

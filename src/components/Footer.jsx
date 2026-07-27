@@ -9,8 +9,8 @@ function Footer() {
       <div class="container">
       <div class="row row__column">
         <a href="#">
-          <figure>
-            <img src={footerLogo} alt="" />
+          <figure className="footer__container">
+            <img src={footerLogo} className="footer__logo" alt="" />
           </figure>
         </a>
         <div class="footer__list">

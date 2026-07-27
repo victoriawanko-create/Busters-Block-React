@@ -17,9 +17,9 @@ function Home() {
         <div className="header__description">
         <h1>Welcome to Buster's Block!</h1>
           <h2>No Late Fees? What a Rewind! Watch <span className="blue">TODAY</span></h2>
-             <a href="#features">
-               <button onClick={<Link to="/movies"></Link>} className="btn">Browse Movies</button>
-            </a>
+             <Link to="/movies">
+            <button className="btn">Browse Movies</button>
+            </Link>
             <figure class="header__img--wrapper">
           <img src={homeImg} class="header__img" />
             </figure>
