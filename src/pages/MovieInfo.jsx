@@ -4,12 +4,32 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Movie from "../components/ui/Movie";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import "./MovieInfo.css"
 
 function MovieInfo({ movies = [] }) {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [recommendedMovies, setRecommendedMovies] = useState([]);
+
+  useEffect(() => {
+  async function fetchMovieInfo() {
+    try {
+      const response = await fetch(
+        `https://www.omdbapi.com/?i=${id}&apikey=95e3e9cb&plot=full`
+      );
+
+      const data = await response.json();
+      setMovie(data);
+    } catch (error) {
+      console.error("Error fetching movie:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  fetchMovieInfo();
+}, [id]);
 
 useEffect(() => {
   async function fetchRecommendations() {
@@ -63,21 +83,32 @@ useEffect(() => {
   return (
     <>
         <Nav />
+     <div className="selected__movie--section">
 
         <Link to="/movies" className="movie__link">
             <FontAwesomeIcon icon="arrow-left" />
         </Link>
 
-        <div className="movie__selected--container">
             <div className="movie__selected">
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h2>{movie.Title}</h2>
-      <p>{movie.Plot}</p>
-            </div>
+        <img
+            src={movie.Poster}
+            alt={`${movie.Title} poster`}
+            className="movie__selected--poster"
+        />
+
+        <div className="movie__selected--description">
+            <h2>{movie.Title}</h2>
+            <p>{movie.Plot}</p>
+        </div>
+
+        </div>
+
         </div>
 
         <div className="recommended__movies">
+
             <h2>Recommended Movies</h2>
+
          {recommendedMovies.length > 0 ? (
   recommendedMovies.map((recommendedMovie) => (
     <Movie
@@ -89,6 +120,8 @@ useEffect(() => {
   <p>No recommended movies found.</p>
 )}
 </div>
+
+
 
       <Footer />
     </>

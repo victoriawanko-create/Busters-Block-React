@@ -1,0 +1,23 @@
+.selected__movie--section {
+    background-color: #F0EFEF;
+    padding: 70px;
+}
+.movie__selected {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.movie__selected--poster {
+  width: 400px;
+}
+
+.movie__selected--description {
+  flex: 1;
+}
+.movie__selected--description {
+    margin-top: 0;
+}
+.recommended__movies {
+    grid-template-rows: repeat(4, 1fr);
+}

@@ -64,6 +64,7 @@ select {
   justify-content: center;
   gap: 8px;
   margin: 24px 0;
+  padding-top: 25px;
 }
 .search-and-sort input {
   width: 300px;

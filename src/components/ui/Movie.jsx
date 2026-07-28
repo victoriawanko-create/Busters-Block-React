@@ -3,25 +3,35 @@ import "./Movie.css"
 import { Link } from 'react-router-dom';
 
 function Movie({ movie }) {
+  const [imageError, setImageError] = useState(false);
+
+  const hasPoster =
+    movie.Poster &&
+    movie.Poster !== "N/A" &&
+    !imageError;
 
   return (
- <Link to={`/movie/${movie.imdbID}`}>
     <div className="movie-card">
       <div className="poster-container">
-        {movie.Poster !== "N/A" ? (
-          <img
-            src={movie.Poster}
-            alt={`${movie.Title} poster`}
-          />
+        {hasPoster ? (
+          <Link to={`/movie/${movie.imdbID}`}>
+            <img
+              src={movie.Poster}
+              alt={`${movie.Title} poster`}
+              onError={() => setImageError(true)}
+            />
+          </Link>
         ) : (
           <p>No poster available</p>
         )}
       </div>
 
-      <h3>{movie.Title}</h3>
+      <Link to={`/movie/${movie.imdbID}`}>
+        <h3>{movie.Title}</h3>
+      </Link>
+
       <p>{movie.Year}</p>
     </div>
-    </Link>
   );
 }
 

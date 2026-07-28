@@ -3,6 +3,7 @@ import "./Movies.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Movie from "../components/ui/Movie";
+import "./Movies.css"
 
 const apiKey = "95e3e9cb";
 
@@ -63,6 +64,7 @@ function Movies({ movies, setMovies }) {
     <>
       <Nav />
 
+    <div className="movies">
       <div className="search-and-sort">
   <input
     type="text"
@@ -86,6 +88,8 @@ function Movies({ movies, setMovies }) {
   {movies.map((movie) => (
     <Movie movie={movie} key={movie.imdbID} />
   ))}
+</div>
+
 </div>
 
       <Footer />
