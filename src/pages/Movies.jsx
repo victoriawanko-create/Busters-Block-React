@@ -6,8 +6,7 @@ import Movie from "../components/ui/Movie";
 
 const apiKey = "95e3e9cb";
 
-function Movies() {
-  const [movies, setMovies] = useState([]);
+function Movies({ movies, setMovies }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   async function fetchMovies(title) {

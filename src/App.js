@@ -8,17 +8,17 @@ import Footer from './components/Footer';
 
 function App() {
 
-  const [movies, setMovies] = useState({});
+  const [movies, setMovies] = useState([]);
 
   return (
       <BrowserRouter>
         <div className="App">
           <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="id:" element={<Nav />}></Route>
-            <Route path="/movies" element={<Movies movies={movies} />}></Route>
-            <Route path="/movies/1" render={() => <MovieInfo movies={movies} />}></Route>
-            <Route path="/footer" element={<Footer />}></Route>
+            <Route path="/" element={<Home />} />
+            <Route path="id:" element={<Nav />} />
+            <Route path="/movies" element={<Movies movies={movies} setMovies={setMovies} />} />
+            <Route path="/movie/:id" element={<MovieInfo  movies={movies}/>} />
+            <Route path="/footer" element={<Footer />} />
           </Routes>
         </div>
       </BrowserRouter>
