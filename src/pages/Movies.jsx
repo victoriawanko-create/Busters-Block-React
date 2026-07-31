@@ -29,7 +29,7 @@ function Movies({ movies, setMovies }) {
 
   useEffect(() => {
     fetchMovies("Inception");
-  }, []);
+  }, );
 
   function searchMovies() {
     if (!searchTerm.trim()) return;

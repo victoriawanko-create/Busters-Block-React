@@ -8,7 +8,7 @@ function Nav() {
   return (
     <>
     <div className="nav__container">
-      <img src={logo} className="logo" />
+      <img src={logo} className="logo" alt="" />
         <ul className="nav__links">
           <li className="nav__link">
             <Link to="/"  className="nav__link">

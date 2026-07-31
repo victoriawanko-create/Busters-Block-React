@@ -1,8 +1,6 @@
 import React from 'react'
 import "./Home.css";
-import logo from '../assets/logo.png';
 import Nav from '../components/Nav';
-import Movies from '../pages/Movies';
 import homeImg from '../assets/home-cinema.svg';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
@@ -21,7 +19,7 @@ function Home() {
             <button className="btn">Browse Movies</button>
             </Link>
             <figure class="header__img--wrapper">
-          <img src={homeImg} class="header__img" />
+          <img src={homeImg} class="header__img" alt="" />
             </figure>
           </div>
             
