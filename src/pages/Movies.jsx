@@ -37,6 +37,12 @@ function Movies({ movies, setMovies }) {
     fetchMovies(searchTerm);
   }
 
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+      searchMovies(); 
+    }
+  }
+
   function filterMovies(event) {
     const filter = event.target.value;
     const sortedMovies = [...movies];
@@ -71,6 +77,7 @@ function Movies({ movies, setMovies }) {
     placeholder="Search for a movie..."
     value={searchTerm}
     onChange={(event) => setSearchTerm(event.target.value)}
+    onKeyDown={handleKeyPress}
   />
   <button onClick={searchMovies}>Search</button>
 

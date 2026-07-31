@@ -1,4 +1,6 @@
 .movie-card img:hover {
     transform: scale(1.03);
 }
-
+.movie__bottom {
+    text-align: center;
+}

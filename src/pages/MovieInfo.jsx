@@ -4,6 +4,7 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Movie from "../components/ui/Movie";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import "./MovieInfo.css"
 
 function MovieInfo({ movies = [] }) {
@@ -86,7 +87,7 @@ useEffect(() => {
      <div className="selected__movie--section">
 
         <Link to="/movies" className="movie__link">
-            <FontAwesomeIcon icon="arrow-left" />
+            <FontAwesomeIcon icon={faArrowLeft} />
         </Link>
 
             <div className="movie__selected">
@@ -105,24 +106,18 @@ useEffect(() => {
 
         </div>
 
-        <div className="recommended__movies">
+<div className="recommended__movies">
+  <h2>Recommended Movies</h2>
 
-            <h2>Recommended Movies</h2>
-
-         {recommendedMovies.length > 0 ? (
-  recommendedMovies.map((recommendedMovie) => (
-    <Movie
-      movie={recommendedMovie}
-      key={recommendedMovie.imdbID}
-    />
-  ))
-) : (
-  <p>No recommended movies found.</p>
-)}
+  <div className="recommended__movies--list">
+    {recommendedMovies.map((recommendedMovie) => (
+      <Movie
+        movie={recommendedMovie}
+        key={recommendedMovie.imdbID}
+      />
+    ))}
+  </div>
 </div>
-
-
-
       <Footer />
     </>
   );

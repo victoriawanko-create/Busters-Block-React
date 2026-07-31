@@ -2,6 +2,9 @@
     background-color: #F0EFEF;
     padding: 70px;
 }
+.movie__link {
+   
+}
 .movie__selected {
   display: flex;
   align-items: flex-start;
@@ -18,6 +21,14 @@
 .movie__selected--description {
     margin-top: 0;
 }
-.recommended__movies {
-    grid-template-rows: repeat(4, 1fr);
+.recommended__movies--list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .recommended__movies--list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

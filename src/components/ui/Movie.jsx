@@ -27,10 +27,13 @@ function Movie({ movie }) {
       </div>
 
       <Link to={`/movie/${movie.imdbID}`}>
+      <div className="movie__bottom">
         <h3>{movie.Title}</h3>
+        <p>{movie.Year}</p>
+     </div>
       </Link>
 
-      <p>{movie.Year}</p>
+    
     </div>
   );
 }
