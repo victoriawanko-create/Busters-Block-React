@@ -2,9 +2,6 @@
     background-color: #F0EFEF;
     padding: 70px;
 }
-.movie__link {
-   
-}
 .movie__selected {
   display: flex;
   align-items: flex-start;
@@ -30,5 +27,16 @@
 @media (max-width: 768px) {
   .recommended__movies--list {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .recommended__movies--list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .selected__movie--section {
+    flex-direction: column;
+    align-items: center;
   }
 }

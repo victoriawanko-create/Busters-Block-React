@@ -5,6 +5,7 @@ import homeImg from '../assets/home-cinema.svg';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
+
 function Home() {
   return (
     <>
