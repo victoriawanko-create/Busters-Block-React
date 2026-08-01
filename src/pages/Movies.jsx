@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./Movies.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
@@ -10,7 +10,7 @@ const apiKey = "95e3e9cb";
 function Movies({ movies, setMovies }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  async function fetchMovies(title) {
+  const fetchMovies = useCallback(async (title) => {
     try {
       const response = await fetch(
         `https://www.omdbapi.com/?s=${title}&apikey=${apiKey}`
@@ -25,23 +25,18 @@ function Movies({ movies, setMovies }) {
     } catch (error) {
       console.error("Error fetching movie data:", error);
     }
-  }
+  }, [setMovies]);
 
   useEffect(() => {
     fetchMovies("Inception");
-  }, );
+  }, [fetchMovies]);
 
-  function searchMovies() {
-    if (!searchTerm.trim()) return;
+function searchMovies(event) {
+  event.preventDefault();
 
-    fetchMovies(searchTerm);
-  }
-
-  function handleKeyPress(event) {
-    if (event.key === "Enter") {
-      searchMovies(); 
-    }
-  }
+  if (!searchTerm.trim()) return;
+  fetchMovies(searchTerm);
+}
 
   function filterMovies(event) {
     const filter = event.target.value;
@@ -72,14 +67,14 @@ function Movies({ movies, setMovies }) {
 
     <div className="movies">
       <div className="search-and-sort">
-  <input
-    type="text"
-    placeholder="Search for a movie..."
-    value={searchTerm}
-    onChange={(event) => setSearchTerm(event.target.value)}
-    onKeyDown={handleKeyPress}
-  />
-  <button onClick={searchMovies}>Search</button>
+        <form className="movie__search" onSubmit={searchMovies}>
+        <input
+            type="text"
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+        />
+        <button type="submit">Search</button>
+        </form>
 
 
   <select defaultValue="" onChange={filterMovies}>
